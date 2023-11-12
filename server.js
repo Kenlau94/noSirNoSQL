@@ -1,7 +1,9 @@
+// added the req imports
 const express = require("express");
 const db = require("./config/connection");
 const routes = require("./routes");
 
+//sets the port using the env
 const PORT = process.env.PORT || 3001;
 const app = express();
 
