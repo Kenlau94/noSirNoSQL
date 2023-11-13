@@ -73,3 +73,5 @@ Fulfilling the following can add 10 points to your grade. Note that the highest 
 Application deletes a user's associated thoughts when the user is deleted.
 
 ## Demo
+
+https://github.com/Kenlau94/noSirNoSQL/assets/134185724/4272c652-50da-4331-bfb3-efe082a3bcdb
