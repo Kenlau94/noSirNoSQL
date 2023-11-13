@@ -1,38 +1,43 @@
-const { Schema, model } = require("mongoose");
-const reactionSchema = require("./Reaction");
+const mongoose = require("mongoose");
+const Reactions = require("./Reaction");
+const dayjs = require("dayjs");
 
-const thoughtSchema = new Schema(
+const thoughtSchema = new mongoose.Schema(
   {
-    thoughtText: {
-      type: String,
-      required: true,
-      minlength: 1,
-      maxlenght: 280,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: (timestamp) => new Date(timestamp).toLocaleString(),
-    },
     username: {
       type: String,
       required: true,
     },
-    reactions: [reactionSchema],
+    thoughtText: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 280,
+    },
+    reactions: [Reactions],
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: (timeStamp) => {
+        return dayjs(timeStamp).format("MMM D YYYY [at] h:mm A");
+      },
+    },
   },
   {
     toJSON: {
-      getters: true,
       virtuals: true,
+      getters: true,
     },
     id: false,
   }
 );
 
+// Retrieve thought's reactions array length
 thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 
-const Thought = model("Thought", thoughtSchema);
+// Initialize Thought model
+const Thought = mongoose.model("thought", thoughtSchema);
 
 module.exports = Thought;

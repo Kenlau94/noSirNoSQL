@@ -16,6 +16,6 @@ app.use(routes);
 // Connect to MongoDB b4 express
 db.once("open", () => {
   app.listen(PORT, () => {
-    console.log(`Server is now listening on PORT ${PORT}.`);
+    console.log(`Server is now listening on PORT ${PORT}!`);
   });
 });
